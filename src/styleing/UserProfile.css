@@ -1,4 +1,33 @@
 .user_section {
     background-color: red;
     margin: 50px;
+    display: flex;
+    height: 80vh;
+    max-width: 100%;
+}
+
+.repository_card {
+    display: flex;
+    width: 300px !important;
+    overflow: initial !important;
+}
+
+.test {
+    /*background-color: #61dafb;*/
+    width: 501px;
+    /*max-width: 100%;*/
+
+}
+
+.cards_container {
+    display: flex;
+    max-width: 70%;
+    overflow: initial;
+    flex-wrap: wrap;
+    margin: 15px;
+}
+
+.whitespace--wrap {
+
+
 }

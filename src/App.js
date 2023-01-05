@@ -6,14 +6,15 @@ import {useState} from "react";
 
 function App() {
     const [user, setUser] = useState();
+    const [repos, setRepos] = useState();
 
 
   return (
       <>
-        <Navbar user={user} setUser={setUser} />
+        <Navbar user={user} setUser={setUser} setRepos={setRepos} />
 
-          {user ?
-              <UserData user={user} setUser={setUser}/> : <> </>
+          {user && repos ?
+              <UserData user={user} setUser={setUser} repos={repos} /> : <> </>
           }
 
         {/*<UserData user={user}/>*/}

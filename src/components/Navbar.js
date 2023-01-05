@@ -60,15 +60,26 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 function Navbar(props) {
     function handleSubmit(event) {
 
-        if(event.keyCode == 13){
+        if(event.keyCode === 13){
             console.log('value', event.target.value);
             props.setUser(event.target.value);
+
+            fetch('https://api.github.com/users/' + event.target.value)
+                .then((r) => r.json())
+                // .then((data) => console.log(data.avatar_url))
+                .then((data)=> props.setUser(data));
+
+
+            fetch('https://api.github.com/users/' + event.target.value + '/repos')
+                .then((r) => r.json())
+                .then((data) => props.setRepos(data))
+                // .then((data) => console.log(data))
+                // .then((data)=> props.setUser(data));
+
         }
 
 
-
     }
-    const [pula, setPula] = useState();
 
     const buttonOnCLick = (() => {
         console.log('plm');
