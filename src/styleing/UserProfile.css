@@ -1,5 +1,5 @@
 .user_section {
-    background-color: red;
+    /*background-color: red;*/
     margin: 50px;
     display: flex;
     height: 80vh;
@@ -10,6 +10,8 @@
     display: flex;
     width: 300px !important;
     overflow: initial !important;
+    margin-right: 40px;
+    margin-bottom: 40px;
 }
 
 .test {
@@ -21,10 +23,12 @@
 
 .cards_container {
     display: flex;
-    max-width: 70%;
+    max-width: 62%;
     overflow: initial;
     flex-wrap: wrap;
     margin: 15px;
+    margin-left: 30px;
+
 }
 
 .whitespace--wrap {

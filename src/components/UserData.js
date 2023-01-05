@@ -12,8 +12,22 @@ import  {Card, CardActions, CardContent, CardMedia, Button, Typography, Box} fro
 function UserData(props) {
 
 
+    const fetchRepoLangs = ((repositoryName)=> {
+        fetch('https://api.github.com/repos/' + props.user.name + repositoryName)
+            .then((r) => r.json())
+            .then((data) => console.log(data))
+
+        // console.log(repositoryName)
+    })
+    const {id} = props.repos;
+
     return (
         <>
+            {/*{console.log(props.repos)};*/}
+            {/*{console.log(props.repos)}*/}
+            {/*{console.log(id)}*/}
+
+            {console.log(props.repos[1].name)}
 
             <div className='user_section'>
                 {/*{JSON.stringify(props.user)}*/}
@@ -59,28 +73,36 @@ function UserData(props) {
 
                 <div className="cards_container">
 
-                    {props.repos.map((repo) =>
-                        <Card className="repository_card" sx={{  width: 1, height: 202}}>
-                            <CardContent>
-                                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                                    Word of the Day
-                                </Typography>
-                                <Typography variant="h5" component="div">
-                                    benevoent
-                                </Typography>
-                                <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                                    adjective
-                                </Typography>
-                                <Typography variant="body2">
-                                    well meaning and kindly.
-                                    <br />
-                    
-                                </Typography>
-                            </CardContent>
-                            <CardActions>
-                                <Button size="small">Learn More</Button>
-                            </CardActions>
-                        </Card>
+                    {props.repos.map((repo) => {
+
+                        // console.log(JSON.stringify(repo) + 'pula mea')
+                    fetchRepoLangs(repo.name);
+                        return(
+                            <Card className="repository_card" sx={{  width: 1, height: 202}} id={repo.id}>
+                                <CardContent>
+                                    <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                                        Word of the Day
+                                    </Typography>
+                                    <Typography variant="h5" component="div">
+                                        benevoent
+                                    </Typography>
+                                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                                        adjective
+                                    </Typography>
+                                    <Typography variant="body2">
+                                        well meaning and kindly.
+                                        <br />
+
+                                    </Typography>
+                                </CardContent>
+                                <CardActions>
+                                    <Button size="small">Learn More</Button>
+                                </CardActions>
+                            </Card>
+                            )
+
+                    }
+
                     )}
 
                 </div>

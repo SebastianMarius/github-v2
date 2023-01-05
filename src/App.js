@@ -11,10 +11,10 @@ function App() {
 
   return (
       <>
-        <Navbar user={user} setUser={setUser} setRepos={setRepos} />
+        <Navbar user = {user} setUser = {setUser} setRepos = {setRepos} />
 
           {user && repos ?
-              <UserData user={user} setUser={setUser} repos={repos} /> : <> </>
+              <UserData user = {user} setUser = {setUser} repos = {repos}  /> : <> </>
           }
 
         {/*<UserData user={user}/>*/}
