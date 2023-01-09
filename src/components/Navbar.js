@@ -58,22 +58,53 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 function Navbar(props) {
+
+
+    useEffect(() => {
+        console.log( props);
+    },[props.lang])
+
+
+
+    // useEffect(() => {
+    //     props.repos.forEach((repo) => {
+    //        fetch('https://api.github.com/repos/' + props.user.login + '/' + repo.name + '/' + 'languages')
+    //            .then((r) => r.json())
+    //            .then((data) => props.setLanguage(state => ({
+    //                ...state,
+    //                "languages" : Object.keys(data),
+    //            })));
+    //     })
+    //
+    // },[props, props.repos])
+
+
+
+
+
     function handleSubmit(event) {
 
         if(event.keyCode === 13){
             console.log('value', event.target.value);
-            props.setUser(event.target.value);
-
 
             fetch('https://api.github.com/users/' + event.target.value)
                 .then((r) => r.json())
                 .then((data)=> props.setUser(data));
-
+                // .then((data)=> console.log(data))
 
             fetch('https://api.github.com/users/' + event.target.value + '/repos')
                 .then((r) => r.json())
-                .then((data) => props.setRepos(data))
+                .then((data) => {
 
+                    data.forEach((repo) => {
+                        fetch('https://api.github.com/repos/' + props.user.login + '/' + repo.name + '/' + 'languages')
+                            .then((response) => response.json())
+                            // .then((dataa) => console.log(dataa))
+                            // .then((langs))
+                    })
+
+
+                })
 
         }
 

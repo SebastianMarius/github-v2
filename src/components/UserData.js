@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import '../styleing/UserProfile.css'
 import * as React from 'react';
 // import Card from '@mui/material/Card';
@@ -10,27 +10,34 @@ import * as React from 'react';
 import  {Card, CardActions, CardContent, CardMedia, Button, Typography, Box} from '@mui/material';
 
 function UserData(props) {
+    const [lang, setLang] = useState();
+
+    console.log(props , ' propss user data ')
 
 
-    const fetchRepoLangs = ((repositoryName)=> {
-        fetch('https://api.github.com/repos/' + props.user.name + repositoryName)
-            .then((r) => r.json())
-            .then((data) => console.log(data))
+
+
+    const fetchRepoLangs = ((repository)=> {
+        console.log('https://api.github.com/repos/' + props.user.login + '/' + repository.name + '/' + 'languages')
+        console.log(repository)
+
+        // fetch('https://api.github.com/repos/' + props.user.login + '/' + repository.name + '/languages' )
+        //     .then((r) => r.json())
+        //     .then((data) => setLang(data));
+
+
+
+        // console.log(1 + ' render')
+        // setLang('ceva plm')
 
         // console.log(repositoryName)
     })
-    const {id} = props.repos;
+    // const {id} = props.repos;
 
     return (
         <>
-            {/*{console.log(props.repos)};*/}
-            {/*{console.log(props.repos)}*/}
-            {/*{console.log(id)}*/}
-
-            {console.log(props.repos[1].name)}
 
             <div className='user_section'>
-                {/*{JSON.stringify(props.user)}*/}
 
                 <Card sx={{ maxWidth: 345 }}>
                     <CardMedia
@@ -75,22 +82,22 @@ function UserData(props) {
 
                     {props.repos.map((repo) => {
 
-                        // console.log(JSON.stringify(repo) + 'pula mea')
-                    fetchRepoLangs(repo.name);
+
                         return(
-                            <Card className="repository_card" sx={{  width: 1, height: 202}} id={repo.id}>
+                            <Card key={repo.id} className="repository_card" sx={{  width: 1, height: 202}} id={repo.id}>
                                 <CardContent>
                                     <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                                        Word of the Day
+                                       ceva aici
                                     </Typography>
                                     <Typography variant="h5" component="div">
-                                        benevoent
+                                        {repo.name}
                                     </Typography>
                                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
                                         adjective
                                     </Typography>
+
                                     <Typography variant="body2">
-                                        well meaning and kindly.
+
                                         <br />
 
                                     </Typography>
