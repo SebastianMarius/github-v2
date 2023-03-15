@@ -1,0 +1,66 @@
+.user_section {
+    /*background-color: red;*/
+    margin: 50px;
+    display: flex;
+    height: 80vh;
+    max-width: 100%;
+}
+
+.user_section_test {
+    max-width: 50%;
+}
+
+.repository_card {
+    display: flex;
+    width: 350px !important;
+    overflow: initial !important;
+    margin-right: 40px;
+    margin-bottom: 40px;
+    min-height: 300px;
+}
+
+
+
+.test {
+    /*background-color: #61dafb;*/
+    width: 501px;
+    /*max-width: 100%;*/
+
+}
+
+.repo_icon {
+    margin-top: 40px;
+}
+
+.cards_container {
+    display: flex;
+    /* max-width: 62%; */
+    overflow: initial;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 15px;
+    margin-left: 10px;
+
+}
+
+.user_not_found_section {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.not_found_image {
+    height: 400px;
+}
+
+.user_and_repo_data {
+    display: flex;
+
+}
+
+
+
+.arrow_icons {
+    margin-top: 20px;
+}

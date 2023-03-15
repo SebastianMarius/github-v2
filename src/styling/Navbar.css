@@ -8,3 +8,11 @@
 .MuiTypography-h6 {
     margin-right: 40px !important;
 }
+
+.logout_typography {
+    cursor: pointer;
+}
+
+.css-1x0waax-MuiModal-root-MuiPopover-root-MuiMenu-root .MuiPaper-root {
+    margin-left: 100px;
+}

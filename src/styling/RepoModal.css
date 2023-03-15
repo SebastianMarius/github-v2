@@ -1,0 +1,54 @@
+.modal {
+    background-color: rgba(90, 86, 86, 0.5);
+    position: absolute;
+    height: 93.2vh;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin: 20px; */
+}
+
+.modal_container {
+    height: 90%;
+    width: 90%;
+    background-color: rgb(63, 58, 58);
+}
+
+.x_icon {
+    float: right;
+    color: rgb(248, 44, 44);
+    background-color:rgba(240,240,240, 0.9);
+    width: 40px !important;
+    /* margin-bottom: 100px; */
+}
+
+.content_code {
+    margin: 25px;
+    -ms-overflow-style: none; 
+    max-height: 90%;
+    margin-top: 3%;
+   
+}
+
+.content_code::-webkit-scrollbar {
+    display: none;
+}
+
+
+.logo_and_imgs {
+    display: block;
+    max-width: 20%;
+    max-height: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25%;
+   
+}
+.folder_and_txt_icons {
+    cursor: pointer;
+    width: auto;
+    max-width: 30%;
+}
+
