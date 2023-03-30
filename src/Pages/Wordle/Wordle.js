@@ -5,7 +5,7 @@ import "../../styling/Wordle.css";
 import Navbar from "../../components/Navbar";
 import randomWords from "random-words";
 import LettersRow from "../../components/WordleLetterDiv";
-import KeyBoard from "../../components/KeyBoard";
+import KeyBoard from "../../components/KeyBoard/KeyBoard";
 import wordExists from "word-exists";
 import { CenteredDiv } from "../../components/Common/SharedStyleComponents";
 

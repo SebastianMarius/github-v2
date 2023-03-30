@@ -1,6 +1,11 @@
 import React, { useEffect, useReducer, useCallback } from "react";
-import "../styling/Keyboard.css";
-import "../styling/Wordle.css";
+import "../../styling/Keyboard.css";
+import "../../styling/Wordle.css";
+import {
+  KeyboardContainer,
+  KeyboardRow,
+  KeyboardKey,
+} from "./KeyBoardStyledComponent";
 
 const initialBgColors = {
   greenBg: [],
@@ -88,23 +93,26 @@ export default function KeyBoard(props) {
   );
 
   return (
-    <div className="keyboard">
+    <KeyboardContainer>
       {keyboardRows.map((row, index) => (
-        <div key={index} className="keyboard__row">
+        <KeyboardRow key={index}>
           {row.map((keyboardKey) => (
             <button
               key={keyboardKey}
-              className={`keyboard__key ${
-                keyboardKey === "Backspace" ? "keyboard__key--wide" : ""
-              }`}
+              className={
+                //   `keyboard__key ${
+                //   keyboardKey === "Backspace" ? "keyboard__key--wide" : ""
+                // }`
+                KeyboardKey
+              }
               value={keyboardKey}
               onClick={(e) => keyPress(e)}
             >
               {keyboardKey}
             </button>
           ))}
-        </div>
+        </KeyboardRow>
       ))}
-    </div>
+    </KeyboardContainer>
   );
 }
