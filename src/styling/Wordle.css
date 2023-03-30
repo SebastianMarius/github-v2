@@ -2,7 +2,7 @@
     max-width: 800px;
 }
 
-.keyboard_container {
+.center_align{
     justify-content: center;
     display: flex;
     align-items: center;
@@ -27,9 +27,21 @@
 }
 
 .green_bg {
-    background-color: green;
+   
+    background-color: green !important;
+    transform: rotate(360);
+   
 }
 
 .yellow_bg {
-    background-color: yellow;
+    background-color: yellow !important;
 }
+
+.red_bg{
+    background-color: red !important;
+}
+
+.gray_bg {
+    background-color: gray !important;
+}
+

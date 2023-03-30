@@ -14,39 +14,45 @@ export default function TextFilesData(props) {
   const fullPath = displayRepoRouting + modal.contentOfFile.name;
 
   useEffect(() => {
-    const fetchCall = async () => {
-      const fetchContent = await fetch(
-        "https://api.github.com/repos/" + fullPath
-      );
+    const fetchContent = async () => {
+      const response = await fetch(`https://api.github.com/repos/${fullPath}`);
+      const content = await response.json();
+      return content;
+    };
 
-      const fetchResponse = await fetchContent.json();
+    const processContent = (content) => {
+      const { name, content: encodedContent } = content;
+      const extension = name.split(".").pop();
+      const encodedData = decode(encodedContent);
+      const language = detectLang(encodedData);
+      const acceptableExtensions = [
+        ...Object.keys(repoLangs),
+        "txt",
+        "md",
+        "json",
+        "gitignore",
+      ];
+      const isIcon = ["jpg", "png", "ico", "svg"].includes(extension);
+      const isText =
+        acceptableExtensions.includes(language) ||
+        acceptableExtensions.includes(extension);
 
-      const splitResponse = fetchResponse.name.split(".");
-      const lastItem = splitResponse[splitResponse.length - 1];
-
-      const iconsExtensions = ["jpg", "png", "ico", "svg"];
-      const textAcceptedExt = Object.keys(repoLangs);
-      textAcceptedExt.push("txt", "md", "json", "gitignore");
-
-      const decodedData = decode(fetchResponse.content);
-      const extractLanguage = detectLang(decodedData);
-
-      if (iconsExtensions.some((element) => element.includes(lastItem))) {
-        setEncryptedPhotoExtension(lastItem);
-        setEncryptedPhoto(fetchResponse);
-      } else if (
-        textAcceptedExt.includes(extractLanguage) ||
-        textAcceptedExt.includes(lastItem)
-      ) {
-        const decodedData = decode(fetchResponse.content);
-
-        setFileText(decodedData);
+      if (isIcon) {
+        setEncryptedPhotoExtension(extension);
+        setEncryptedPhoto(content);
+      } else if (isText) {
+        setFileText(encodedData);
       } else {
         setFileText("Incarca n pula mea un file acceptabil");
       }
     };
 
-    fetchCall();
+    const fetchData = async () => {
+      const content = await fetchContent();
+      processContent(content);
+    };
+
+    fetchData();
   }, []);
 
   const ShowImage = ({ encodedImage }) => (

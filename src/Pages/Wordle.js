@@ -1,81 +1,134 @@
-import Keyboard from "react-simple-keyboard";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "react-simple-keyboard/build/css/index.css";
 import "../styling/Wordle.css";
-import WordleLetterDiv from "../components/WordleLetterDiv";
+
 import Navbar from "../components/Navbar";
 import randomWords from "random-words";
+import LettersRow from "../components/WordleLetterDiv";
+import KeyBoard from "./KeyBoard";
+import wordExists from "word-exists";
+
+const arrayOfWords = Array(6).fill("");
 
 export default function Wordle() {
-  const [layoutName, setLayoutName] = useState();
-  const [input, setInput] = useState("");
   const [generatedWord, setGeneratedWord] = useState();
-  const arrayOfWords = new Array(6).fill("");
-  const [stateOfWords, setStateOfWords] = useState(arrayOfWords);
-  const [positionCounting, setPositionCounting] = useState(0);
-  const [enteredFive, setEnteredFive] = useState(false);
+  const [userWords, setUserWords] = useState(arrayOfWords);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isWinning, setIsWinning] = useState(false);
+  const [showErrorMsg, setShowErrorMsg] = useState(false);
+
+  const resetGame = () => {
+    setUserWords(arrayOfWords);
+    setIsWinning(false);
+    setCurrentIndex(0);
+    generateRandomWord();
+  };
+
+  const generateRandomWord = () => {
+    let words = randomWords({ exactly: 1, maxLength: 5 });
+
+    while (words[0].length < 5) {
+      words = randomWords({ exactly: 1, maxLength: 5 });
+    }
+
+    setGeneratedWord(words[0].toUpperCase());
+  };
 
   useEffect(() => {
-    let word = randomWords({ exactly: 1, maxLength: 5 });
-
-    while (word[0].length < 5) {
-      word = randomWords({ exactly: 1, maxLength: 5 });
-    }
-
-    setGeneratedWord(word);
+    generateRandomWord();
+    document.addEventListener("keydown", (e) => {
+      keyPress(e.key);
+    });
+    return () => {
+      window.removeEventListener("keydown", (e) => {
+        keyPress(e.key);
+      });
+    };
   }, []);
 
-  console.log(generatedWord);
-
-  const keyPress = (e) => {
-    setEnteredFive(false);
-    const newArray = [...stateOfWords];
-    const needsNewRow = stateOfWords[positionCounting].length > 4;
-
-    if (needsNewRow && e === "{enter}") {
-      setPositionCounting(positionCounting + 1);
-      setEnteredFive(true);
-    } else {
-      newArray[positionCounting] += e;
+  const resetErrorMessage = () => {
+    if (userWords[currentIndex]) {
+      setShowErrorMsg(false);
     }
+  };
+  useEffect(resetErrorMessage, [userWords]);
 
-    if (e === "{enter}") {
+  const stateOfWordsRef = useRef(userWords);
+
+  useEffect(() => {
+    stateOfWordsRef.current = userWords;
+  }, [userWords]);
+
+  const keyPress = (pressedKey) => {
+    if (isWinning) {
       return;
     }
 
-    setStateOfWords(newArray);
+    console.log(pressedKey);
+    const newArray = [...stateOfWordsRef.current];
+    const needsNewRow = stateOfWordsRef.current[currentIndex].length > 4;
+
+    if (pressedKey === "Backspace") {
+      newArray[currentIndex] = newArray[currentIndex].slice(0, -1);
+    }
+
+    // debugger;
+    if (pressedKey === "Enter" && needsNewRow) {
+      const isWord = wordExists(newArray[currentIndex]);
+      setShowErrorMsg(!isWord);
+
+      if (!isWord) {
+        newArray[currentIndex] = "";
+      } else {
+        console.log("current index intra n else");
+        setCurrentIndex(currentIndex + 1);
+      }
+
+      if (newArray.includes(generatedWord)) {
+        setIsWinning(true);
+      }
+    }
+
+    if (pressedKey.length === 1) {
+      console.log(currentIndex);
+      newArray[currentIndex] += pressedKey.toUpperCase();
+    }
+
+    setUserWords(newArray);
   };
 
   return (
     <>
-      <div> inputu: {input}</div>
       <Navbar />
-      <div className="keyboard_container">
+      <div className="center_align">
         {generatedWord &&
-          arrayOfWords.map((string, index) => (
+          Object.values(arrayOfWords).map((string, index) => (
             <div key={index}>
-              <WordleLetterDiv
-                stateOfWords={stateOfWords[index]}
-                positionCounting={positionCounting}
+              <LettersRow
+                stateOfWords={userWords[index]}
+                positionCounting={currentIndex}
                 generatedWord={generatedWord}
-                enteredFive={enteredFive}
+                currentRow={index}
               />
             </div>
           ))}
+      </div>
 
-        <Keyboard
-          // keyboardRef={(r) => (this.keyboard = r)}
-          layoutName={layoutName}
-          // onChange={changeIt(e)}
-          layout={{
-            default: [
-              "q w e r t y u i o p",
-              "a s d f g h j k l {enter}",
-              "z x c v b n m",
-            ],
-          }}
-          onKeyPress={(e) => keyPress(e)}
+      <div className="center_align">
+        <KeyBoard
+          stateOfWords={userWords}
+          positionCounting={currentIndex}
+          generatedWord={generatedWord}
+          keyPress={(e) => keyPress(e.target.value)}
         />
+        {showErrorMsg && <div> Cuvantu nu i in dex </div>}
+
+        {isWinning && (
+          <div className="user_won_section">
+            <span>user won</span>
+            <button onClick={resetGame}> Restart </button>
+          </div>
+        )}
       </div>
     </>
   );

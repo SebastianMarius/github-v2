@@ -23,8 +23,6 @@ export default function RepoData(props) {
     "contents",
   ]);
 
-  const [isClicked, setIsClicked] = useState(true);
-
   const navigate = useNavigate();
 
   const repoArray = routingRepo.map((rout) => rout + "/");

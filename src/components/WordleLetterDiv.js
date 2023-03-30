@@ -1,30 +1,39 @@
 import React, { useEffect, useState } from "react";
 
-export default function WordleLetterDiv(props) {
-  const { generatedWord, enteredFive, positionCounting, stateOfWords } = props;
+export default function LettersRow(props) {
+  const {
+    generatedWord,
+    keyPress,
+    currentRow,
+    positionCounting,
+    stateOfWords,
+  } = props;
 
-  const splitArray = generatedWord[0].split("");
-  const splitWords = stateOfWords.split("");
+  const generatedWordLetters = generatedWord.split("");
+  const guessedWord = stateOfWords.split("");
 
-  const colorIt = (e, index) => {
-    // console.log(e === splitWords[index]);
-    if (enteredFive) {
-      if (e === splitWords[index]) {
-        return "green_bg";
-      } else if (stateOfWords.includes(e)) {
-        // console.log()
-        return "yellow_bg";
-      }
+  const getLetterStyle = (letter, index) => {
+    if (currentRow === positionCounting || !guessedWord[index]) {
+      return;
+    }
+
+    if (letter === guessedWord[index]) {
+      return "green_bg";
+    } else if (generatedWord.includes(guessedWord[index])) {
+      return "yellow_bg";
+    } else if (!generatedWordLetters.includes(guessedWord[index])) {
+      return "red_bg";
     }
   };
 
-  console.log(stateOfWords, " stringu");
-
   return (
     <div className="horizontal_line">
-      {splitArray.map((e, index) => (
-        <div className={"letter_square " + colorIt(e, index)} key={index}>
-          {splitWords[index]}
+      {generatedWordLetters.map((letter, index) => (
+        <div
+          className={"letter_square " + getLetterStyle(letter, index)}
+          key={index}
+        >
+          {guessedWord[index]}
         </div>
       ))}
     </div>
