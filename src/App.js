@@ -3,14 +3,13 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import UserData from "./components/UserData";
 import { useState } from "react";
-import HomePage from "./Pages/HomePage";
+import HomePage from "./Pages/Home/HomePage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import SearchForUsers from "./Pages/SearchForUsers";
 import UserInfo from "./Pages/UserInfo";
-import RepoDetails from "./Pages/RepoDetails";
-import SignUp from "./Pages/SignUp";
+import RepoDetails from "./Pages/RepoDetails/RepoDetails";
+import SignUp from "./Pages/SignUp/SignUp";
 import { Auth0Provider } from "@auth0/auth0-react";
-import Wordle from "./Pages/Wordle";
+import Wordle from "./Pages/Wordle/Wordle";
 
 function App() {
   const router = createBrowserRouter([
@@ -26,6 +25,7 @@ function App() {
       path: "/searchforuser",
       element: <HomePage />,
     },
+
     {
       path: "/profile/:username",
       element: <UserInfo />,

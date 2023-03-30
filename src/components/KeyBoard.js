@@ -106,17 +106,5 @@ export default function KeyBoard(props) {
         </div>
       ))}
     </div>
-    // <div className="keyboard_container" onKeyDown={(e) => handleKeyDown(e)}>
-    //   {keyboardLetters.map((keyboardKey) => (
-    //     <button
-    //       className={"keyboard_key_btn " + keyboardChangeBg(keyboardKey)}
-    //       value={keyboardKey}
-    //       key={keyboardKey}
-    //       onClick={(e) => keyPress(e)}
-    //     >
-    //       {keyboardKey}
-    //     </button>
-    //   ))}
-    // </div>
   );
 }

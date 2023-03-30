@@ -1,9 +1,11 @@
-import github from "../assets/Github.png";
+import github from "../../assets/Github.png";
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import Button from "@mui/material/Button";
 import { redirect } from "react-router-dom";
-import Navbar from "../components/Navbar";
+import Navbar from "../../components/Navbar";
+import { LoginButton } from "./SignUpStyledComponent";
+import { CenteredDiv } from "../../components/Common/SharedStyleComponents";
 
 export default function SignUp() {
   const { loginWithRedirect } = useAuth0();
@@ -20,7 +22,7 @@ export default function SignUp() {
           <p>{user.email}</p>
         </div>
       ) : (
-        <div className="center_div">
+        <LoginButton>
           <Button
             variant="contained"
             color="success"
@@ -35,7 +37,7 @@ export default function SignUp() {
             {" "}
             Logheaza ma pls{" "}
           </Button>
-        </div>
+        </LoginButton>
       )}
     </>
   );

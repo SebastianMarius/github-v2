@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
-import UserCard from "../components/UserCard";
+import Navbar from "../../components/Navbar";
+import UserCard from "../../components/UserCard";
 import { useParams } from "react-router-dom";
-import useUserHook from "../hooks/useUserHook";
-import RepoData from "../components/RepoData";
+import useUserHook from "../../hooks/useUserHook";
+import RepoData from "../../components/RepoData";
 import { useLocation } from "react-router-dom";
+import { MakeFlex } from "../../components/Common/SharedStyleComponents";
+import { User_section } from "./RepoDataStyledComponent";
 
 export default function RepoDetails() {
   const { username: searchTerm } = useParams();
@@ -15,12 +17,12 @@ export default function RepoDetails() {
   return (
     <>
       <Navbar />
-      <div className="user_and_repo_data">
-        <div className="user_section testamaici">
+      <MakeFlex>
+        <User_section>
           <UserCard user={user.user} />
-        </div>
+        </User_section>
         <RepoData userName={searchTerm} repoLangs={repoLangs} />
-      </div>
+      </MakeFlex>
     </>
   );
 }

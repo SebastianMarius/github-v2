@@ -1,6 +1,6 @@
-import Navbar from "../components/Navbar";
+import Navbar from "../../components/Navbar";
 import { TextField, Box } from "@mui/material";
-import "../styling/HomePage.css";
+// import "../styling/HomePage.css";
 import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
 import { useEffect, useState, useCallback } from "react";
@@ -8,14 +8,36 @@ import { ShieldTwoTone } from "@mui/icons-material";
 import { Navigate, redirect, useNavigate } from "react-router-dom";
 import debounce from "lodash.debounce";
 import { useAuth0 } from "@auth0/auth0-react";
+import { CenteredDiv } from "../../components/Common/SharedStyleComponents";
+
+import {
+  HomePageContainer,
+  AutocompleteContainer,
+  UserOption,
+} from "./HomeStyledComponents";
+
+function RenderNotAuthDiv() {
+  const navigate = useNavigate();
+  return (
+    <CenteredDiv givenHeightVh={90}>
+      <div>You need to auth</div>
+      <button
+        onClick={() => {
+          navigate("/");
+        }}
+      >
+        Go to auth
+      </button>
+    </CenteredDiv>
+  );
+}
 
 export default function HomePage(props) {
   const [userInput, setSearchInput] = useState("");
   const [users, setUsers] = useState([]);
 
-  const { isAuthenticated } = useAuth0();
-
   const navigate = useNavigate();
+  const { isAuthenticated } = useAuth0();
 
   const handleKeyDown = (e, shit) => {
     setSearchInput(shit);
@@ -59,8 +81,8 @@ export default function HomePage(props) {
       {isAuthenticated ? (
         <>
           <Navbar />
-          <div className="center_div homepage_bg">
-            <Stack spacing={2} sx={{ width: 300 }}>
+          <HomePageContainer>
+            <AutocompleteContainer>
               <Autocomplete
                 value={userInput}
                 open={userInput.length > 2}
@@ -73,11 +95,7 @@ export default function HomePage(props) {
                 onInputChange={handleKeyDown}
                 onChange={handleSelectUser}
                 renderOption={(props, option) => (
-                  <Box
-                    component="li"
-                    sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
-                    {...props}
-                  >
+                  <UserOption component="li" {...props}>
                     <img
                       width="20"
                       src={option.img}
@@ -85,23 +103,14 @@ export default function HomePage(props) {
                       alt=""
                     />
                     {option.label}
-                  </Box>
+                  </UserOption>
                 )}
               />
-            </Stack>
-          </div>
+            </AutocompleteContainer>
+          </HomePageContainer>
         </>
       ) : (
-        <div className="center_div">
-          <div>You need to auth</div>
-          <button
-            onClick={() => {
-              navigate("/");
-            }}
-          >
-            Go to auth
-          </button>
-        </div>
+        <RenderNotAuthDiv />
       )}
     </>
   );

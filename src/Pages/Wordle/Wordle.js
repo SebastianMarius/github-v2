@@ -1,12 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
 import "react-simple-keyboard/build/css/index.css";
-import "../styling/Wordle.css";
+import "../../styling/Wordle.css";
 
-import Navbar from "../components/Navbar";
+import Navbar from "../../components/Navbar";
 import randomWords from "random-words";
-import LettersRow from "../components/WordleLetterDiv";
-import KeyBoard from "./KeyBoard";
+import LettersRow from "../../components/WordleLetterDiv";
+import KeyBoard from "../../components/KeyBoard";
 import wordExists from "word-exists";
+import { CenteredDiv } from "../../components/Common/SharedStyleComponents";
 
 const arrayOfWords = Array(6).fill("");
 
@@ -100,7 +101,7 @@ export default function Wordle() {
   return (
     <>
       <Navbar />
-      <div className="center_align">
+      <CenteredDiv flexDirection={"column"}>
         {generatedWord &&
           Object.values(arrayOfWords).map((string, index) => (
             <div key={index}>
@@ -112,9 +113,9 @@ export default function Wordle() {
               />
             </div>
           ))}
-      </div>
+      </CenteredDiv>
 
-      <div className="center_align">
+      <CenteredDiv flexDirection={"column"}>
         <KeyBoard
           stateOfWords={userWords}
           positionCounting={currentIndex}
@@ -124,12 +125,12 @@ export default function Wordle() {
         {showErrorMsg && <div> Cuvantu nu i in dex </div>}
 
         {isWinning && (
-          <div className="user_won_section">
+          <div>
             <span>user won</span>
             <button onClick={resetGame}> Restart </button>
           </div>
         )}
-      </div>
+      </CenteredDiv>
     </>
   );
 }

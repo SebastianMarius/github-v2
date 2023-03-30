@@ -29,6 +29,7 @@
     "react-simple-keyboard": "^3.5.30",
     "react-syntax-highlighter": "^15.5.0",
     "sort-by": "^1.2.0",
+    "styled-components": "^5.3.9",
     "web-vitals": "^2.1.4",
     "word-exists": "^1.0.0"
   },
