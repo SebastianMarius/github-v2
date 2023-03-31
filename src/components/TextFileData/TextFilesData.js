@@ -43,7 +43,7 @@ export default function TextFilesData(props) {
       } else if (isText) {
         setFileText(encodedData);
       } else {
-        setFileText("Incarca un fisier acceptabil");
+        setFileText("Te rog incarca un fisier acceptabil");
       }
     };
 
