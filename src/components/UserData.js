@@ -1,7 +1,7 @@
 import "../styling/UserProfile.css";
 import * as React from "react";
 import UserCard from "./UserCard";
-import RepoCard from "./RepoCards";
+import RepoCard from "./RepoCard/RepoCards";
 import UserLoading from "./UserLoading";
 import { isEmpty } from "lodash";
 import CircularProgress from "@mui/material/CircularProgress";

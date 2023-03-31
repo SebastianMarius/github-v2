@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { decode } from "base-64";
-import RepoModal from "../styling/RepoModal.css";
+import RepoModal from "../../styling/RepoModal.css";
 import CloseIcon from "@mui/icons-material/Close";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import detectLang from "lang-detector";
@@ -43,7 +43,7 @@ export default function TextFilesData(props) {
       } else if (isText) {
         setFileText(encodedData);
       } else {
-        setFileText("Incarca n pula mea un file acceptabil");
+        setFileText("Incarca un fisier acceptabil");
       }
     };
 

@@ -36,5 +36,7 @@ export const KeyboardKey = styled.button`
   -webkit-user-select: none;
   touch-action: manipulation;
   margin-right: 10px;
-  width: ${(props) => props.widthUsingPx};
+  ${(props) =>
+    (props.keyboardKey === "Backspace" && "background-color: coral;") ||
+    (props.keyboardKey === "Enter" && "background-color : red")}
 `;

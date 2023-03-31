@@ -3,7 +3,7 @@ import Navbar from "../../components/Navbar";
 import UserCard from "../../components/UserCard";
 import { useParams } from "react-router-dom";
 import useUserHook from "../../hooks/useUserHook";
-import RepoData from "../../components/RepoData";
+import RepoData from "../../components/RepoData/RepoData";
 import { useLocation } from "react-router-dom";
 import { MakeFlex } from "../../components/Common/SharedStyleComponents";
 import { User_section } from "./RepoDataStyledComponent";

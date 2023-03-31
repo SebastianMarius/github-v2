@@ -15,3 +15,7 @@ export const MakeFlex = styled.div`
 export const halfWidthPercentage = styled.div`
   max-width: 50%;
 `;
+
+export const marginTop = styled.div`
+  ${(props) => props.marginTop}
+`;

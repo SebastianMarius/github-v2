@@ -8,6 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { RepositoryCard } from "./RepoCardStyledComponent";
 
 export default function RepoCard(props) {
   const { repo, user } = props;

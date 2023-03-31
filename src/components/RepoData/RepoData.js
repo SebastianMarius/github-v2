@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import { redirect, useParams } from "react-router-dom";
-import FolderIcon from "@mui/icons-material/Folder";
-import ArticleIcon from "@mui/icons-material/Article";
+
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import TextFilesData from "./TextFilesData";
+import TextFilesData from "../../components/TextFileData/TextFilesData";
 import { Navigate, useNavigate } from "react-router-dom";
+import {
+  BackIcon,
+  FilesIcons,
+  FolderImage,
+  ArticleImage,
+} from "./RepoDataStyledComponent";
 
 export default function RepoData(props) {
   const { repoName: repositoryName } = useParams();
@@ -22,6 +27,8 @@ export default function RepoData(props) {
     repositoryName,
     "contents",
   ]);
+
+  // console.log()
 
   const navigate = useNavigate();
 
@@ -85,6 +92,7 @@ export default function RepoData(props) {
   };
 
   useEffect(() => {
+    console.log(props.userName, " usernameeee");
     const fetchRepo = async () => {
       const fetchRepoContent = await fetch(
         "https://api.github.com/repos/" +
@@ -102,35 +110,33 @@ export default function RepoData(props) {
 
   return (
     <>
-      <div className="repository_details">
+      <div>
         <div>{displayRepoRouting}</div>
-        <ArrowBackIcon className="arrow_icons" onClick={goBack} />
+        <BackIcon onClick={goBack} />
         {console.log(repoContent)}
         {repoContent?.map((content) =>
           content.type === "dir" ? (
             <>
-              <div
-                className="folder_and_txt_icons"
+              <FilesIcons
                 key={content.name}
                 onClick={() => {
                   handleRouting(content);
                 }}
               >
-                <FolderIcon className="repo_icon" />
+                <FolderImage />
                 <div>{content.name}</div>
-              </div>
+              </FilesIcons>
             </>
           ) : (
-            <div
-              className="folder_and_txt_icons"
+            <FilesIcons
               key={content.name}
               onClick={() => {
                 setModal({ contentOfFile: content, isShowing: true });
               }}
             >
-              <ArticleIcon className="repo_icon" />
+              <ArticleImage />
               <div>{content.name}</div>
-            </div>
+            </FilesIcons>
           )
         )}
       </div>

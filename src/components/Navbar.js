@@ -136,25 +136,6 @@ function Navbar(props) {
 
   const buttonOnCLick = () => {};
 
-  // useEffect(() => {
-  //   const getToken = async () => {
-  //     const token_test = await getAccessTokenSilently();
-  //     console.log(token_test);
-  //     const domain = "dev-oadaql3s4hxo7q1r.us.auth0.com";
-  //     const headers = { Authorization: "Bearer " + token_test };
-  //     const response = await fetch("https://" + domain + "/userinfo", {
-  //       method: "POST",
-  //       headers: {
-  //         headers,
-  //       },
-  //     });
-
-  //     console.log(response);
-  //   };
-
-  //   getToken();
-  // }, []);
-
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" style={{ backgroundColor: "#555555" }}>

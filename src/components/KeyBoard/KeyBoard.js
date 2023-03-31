@@ -97,19 +97,14 @@ export default function KeyBoard(props) {
       {keyboardRows.map((row, index) => (
         <KeyboardRow key={index}>
           {row.map((keyboardKey) => (
-            <button
+            <KeyboardKey
               key={keyboardKey}
-              className={
-                //   `keyboard__key ${
-                //   keyboardKey === "Backspace" ? "keyboard__key--wide" : ""
-                // }`
-                KeyboardKey
-              }
+              keyboardKey={keyboardKey}
               value={keyboardKey}
               onClick={(e) => keyPress(e)}
             >
               {keyboardKey}
-            </button>
+            </KeyboardKey>
           ))}
         </KeyboardRow>
       ))}
