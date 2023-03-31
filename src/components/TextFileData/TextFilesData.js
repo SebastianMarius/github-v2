@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { decode } from "base-64";
 import RepoModal from "../../styling/RepoModal.css";
-import CloseIcon from "@mui/icons-material/Close";
+
 import SyntaxHighlighter from "react-syntax-highlighter";
 import detectLang from "lang-detector";
+import {
+  Modal,
+  ModalContainer,
+  Close_icon,
+  LogoAndImg,
+} from "./TextFileDataStyledComponent";
 
 export default function TextFilesData(props) {
   const [fileText, setFileText] = useState();
@@ -56,18 +62,14 @@ export default function TextFilesData(props) {
   }, []);
 
   const ShowImage = ({ encodedImage }) => (
-    <img
-      className="logo_and_imgs"
-      src={`data:image/png;base64,${encodedImage}`}
-    />
+    <LogoAndImg src={`data:image/png;base64,${encodedImage}`} />
   );
 
   return (
     <>
-      <div className="modal">
-        <div className="modal_container">
-          <CloseIcon
-            className="x_icon"
+      <Modal>
+        <ModalContainer>
+          <Close_icon
             onClick={() => setModal({ ...modal, isShowing: false })}
           />
           <div>
@@ -89,8 +91,8 @@ export default function TextFilesData(props) {
               {fileText}
             </SyntaxHighlighter>
           )}
-        </div>
-      </div>
+        </ModalContainer>
+      </Modal>
       ;
     </>
   );

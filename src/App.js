@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import Navbar from "./components/Navbar";
-import UserData from "./components/UserData";
+import UserData from "./components/UserData/UserData";
 import { useState } from "react";
 import HomePage from "./Pages/Home/HomePage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";

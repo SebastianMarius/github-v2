@@ -1,17 +1,17 @@
-import "../styling/UserProfile.css";
 import * as React from "react";
-import UserCard from "./UserCard";
-import RepoCard from "./RepoCard/RepoCards";
-import UserLoading from "./UserLoading";
+import UserCard from "../UserCard";
+import RepoCard from "../RepoCard/RepoCards";
+import UserLoading from "../UserLoading";
 import { isEmpty } from "lodash";
 import CircularProgress from "@mui/material/CircularProgress";
+import { UserSection, CardsContainer } from "./UserDataStyledComponent";
 
 function UserData(props) {
   const { user, repos, isloading } = props;
 
   return (
     <>
-      <div className="user_section ">
+      <UserSection>
         {isloading.loadingUser && !isEmpty(user) ? (
           <UserLoading />
         ) : (
@@ -21,13 +21,13 @@ function UserData(props) {
         {isloading.loadingRepo ? (
           <CircularProgress />
         ) : (
-          <div className="cards_container">
+          <CardsContainer>
             {repos.map((repo) => (
               <RepoCard repo={repo} key={repo.name} user={user} />
             ))}
-          </div>
+          </CardsContainer>
         )}
-      </div>
+      </UserSection>
     </>
   );
 }
