@@ -179,6 +179,14 @@ function Navbar(props) {
             >
               Wordle
             </Typography>
+            <Typography
+              variant="h6"
+              component="span"
+              onClick={() => navigate("/weather")}
+              className="typho-homepg"
+            >
+              Weather
+            </Typography>
           </Typography>
 
           <Box>

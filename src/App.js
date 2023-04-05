@@ -10,6 +10,7 @@ import RepoDetails from "./Pages/RepoDetails/RepoDetails";
 import SignUp from "./Pages/SignUp/SignUp";
 import { Auth0Provider } from "@auth0/auth0-react";
 import Wordle from "./Pages/Wordle/Wordle";
+import Weather from "./Pages/Weather/Weather";
 
 function App() {
   const router = createBrowserRouter([
@@ -37,6 +38,10 @@ function App() {
     {
       path: "/wordle",
       element: <Wordle />,
+    },
+    {
+      path: "/weather",
+      element: <Weather />,
     },
   ]);
 
