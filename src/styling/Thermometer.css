@@ -8,10 +8,10 @@
     color: #282C34;
 }
 
-.dlkNts.search_container {
+.search_container {
     margin-top: 30px;
     display: flex;
-    flex-direction: row;
+    flex-direction: row !important;
 }
 
 .search_container input {
@@ -27,6 +27,51 @@
 .weather_image {
     width: 100px;
     margin-top: 30px;
-    margin-left: 35%;
+    margin-left: 20%;
     border-radius: 20%;
 }
+
+.date_and_time {
+    margin-left: 26%;
+    margin-top: 10%;
+    display: flex;
+    font-size: 25px;
+
+}
+
+.date {
+    color: white;
+}
+
+.hour {
+    margin-left: 10px;
+    color: #282C34;
+}
+
+.weather_icon_and_thermo {
+    display: flex;
+    justify-content: space-between;
+}
+
+.city_photo {
+    opacity: 0.8;
+    max-height: 100px;
+    max-width: 200px;
+    border-radius: 20px;
+    object-fit: fill;
+
+}
+
+
+.city_name {
+    font-size: 20px;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 40px;
+    padding: 0;
+  }

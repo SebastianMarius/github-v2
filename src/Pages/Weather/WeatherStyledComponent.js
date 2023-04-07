@@ -17,5 +17,5 @@ export const CurrentWeatherContainer = styled.div`
       "linear-gradient(to left, #dde7ee,#c6cfd6 )") ||
     (props.weatherDescription.includes("Snow") && "#282c34") ||
     (props.weatherDescription.includes("Rain") &&
-      "linear-gradient(to left, #091A31,#193974 )")};
+      "linear-gradient(to left, #959595,#D0D0D0 )")};
 `;

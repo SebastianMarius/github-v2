@@ -10,12 +10,16 @@ import Rain from "./Rain";
 export default function Weather() {
   const [weather, setWeather] = useState();
   const [currentWeather, setCurrentWeather] = useState([]);
+  const [city, setCity] = useState("Cluj-Napoca");
   const key = "709e827bd8b3d48947e29431897b244d";
+  console.log(city);
 
   useEffect(() => {
     const getCurrentWeather = async () => {
       const weatherData = await fetch(
-        "https://api.openweathermap.org/data/2.5/weather?q=La Sarre&appid=" +
+        "https://api.openweathermap.org/data/2.5/weather?q=" +
+          city +
+          "&appid=" +
           key +
           "&units=metric"
       );
@@ -32,7 +36,7 @@ export default function Weather() {
     };
 
     getCurrentWeather();
-  }, []);
+  }, [city]);
 
   return (
     <div>
@@ -42,7 +46,10 @@ export default function Weather() {
         <WeatherDashboard
           weatherDescription={currentWeather}
           weather={weather}
+          setCity={setCity}
+          city={city}
         />
+        {console.log(weather)}
       </CurrentWeatherContainer>
     </div>
   );
