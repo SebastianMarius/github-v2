@@ -1,0 +1,93 @@
+.weather_history {
+    width: 90%;
+    height: 25%;
+    display: flex;
+    margin-top:6%;
+    
+}
+
+.weather_history_icon {
+    max-height: 50px;
+    max-width: 50px;
+}
+
+.highlights {
+    margin-right: auto;
+    margin-left: 7%;
+}
+
+.wind_speed {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.km {
+    margin-left: 5px;
+}
+
+.lungs {
+    max-width: 100px;
+}
+
+.sunrise_svg {
+    max-width: 30%;
+}
+
+.sunset_svg {
+    max-width: 30%;   
+}
+
+.sunrise_container {
+    display: flex;
+}
+
+.sunset_container {
+    display: flex;
+}
+
+.give_margin {
+    margin-left: 15%;
+}
+
+.sun_time {
+    margin-left: 7%;
+}
+
+.visibility {
+    display: flex;
+}
+
+#compass {
+    width: 120px;
+    height: 130px;
+    background-image:url('https://i.imgur.com/msagEaY.png');
+    background-position: center;
+    background-size: 130px;
+    position: relative;
+  }
+  #arrow {
+ 
+  }
+  
+  .arrow_head {
+    background-color:#fd6464;
+    width: 3px;
+    height: 10px;
+  }
+
+  .visibility_svg {
+    width: 50%;
+  }
+
+  .airQuality_description {
+    margin-bottom: 20px;
+  }
+
+  #gauge-chart4 {
+    margin-top:30px;
+  }
+
+  .gray_color {
+    color: #292929;
+  }

@@ -6,7 +6,7 @@ import "../../styling/Raining.css";
 export default function Rain() {
   return (
     <div>
-      <ReactRain numDrops="150" />
+      <ReactRain numDrops="250" />
     </div>
   );
 }

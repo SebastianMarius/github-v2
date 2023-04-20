@@ -11,8 +11,10 @@ export default function Weather() {
   const [weather, setWeather] = useState();
   const [currentWeather, setCurrentWeather] = useState([]);
   const [city, setCity] = useState("Cluj-Napoca");
-  const key = "709e827bd8b3d48947e29431897b244d";
-  console.log(city);
+  const [cityExist, setCityExist] = useState(true);
+
+  let apiResponseCode;
+  const Apikey = "709e827bd8b3d48947e29431897b244d";
 
   useEffect(() => {
     const getCurrentWeather = async () => {
@@ -20,18 +22,26 @@ export default function Weather() {
         "https://api.openweathermap.org/data/2.5/weather?q=" +
           city +
           "&appid=" +
-          key +
+          Apikey +
           "&units=metric"
       );
       const currentWeather = await weatherData.json();
-
       const currentWeatherArray = [];
 
-      currentWeather.weather.map((element) => {
+      currentWeather.weather?.map((element) => {
         currentWeatherArray.push(element.main);
       });
 
+      console.log(currentWeather);
+
       setCurrentWeather(currentWeatherArray);
+
+      if (currentWeather.cod === 200) {
+        setWeather(currentWeather);
+      } else {
+        setWeather();
+      }
+
       setWeather(currentWeather);
     };
 
@@ -41,14 +51,19 @@ export default function Weather() {
   return (
     <div>
       <Navbar />
+      {weather?.cod && console.log(weather.cod, "weatherr ")}
 
       <CurrentWeatherContainer weatherDescription={currentWeather}>
-        <WeatherDashboard
-          weatherDescription={currentWeather}
-          weather={weather}
-          setCity={setCity}
-          city={city}
-        />
+        {weather && (
+          <WeatherDashboard
+            cityExist={cityExist}
+            weatherDescription={currentWeather}
+            weather={weather}
+            setCity={setCity}
+            city={city}
+            Apikey={Apikey}
+          />
+        )}
         {console.log(weather)}
       </CurrentWeatherContainer>
     </div>
