@@ -12,8 +12,8 @@ const airQualityByIndex = [
 ];
 
 const getAirQuality = (airQuality) => {
-  console.log(airQuality);
-  const qualityIndex = airQuality?.list[0].main.aqi;
+  if (airQuality?.cod === 404) return;
+  const qualityIndex = airQuality?.list[0]?.main.aqi;
   return airQualityByIndex[qualityIndex - 1];
 };
 

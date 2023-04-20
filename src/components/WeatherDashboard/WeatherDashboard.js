@@ -34,6 +34,9 @@ export default function WeatherDashboard(props) {
   const { weatherDescription, Apikey, weather, setCity, city } = props;
 
   const [date, setDate] = useState(currentDate);
+  const weatherCode = weather?.cod;
+
+  console.log("d aaci?");
 
   return (
     <>
@@ -46,9 +49,15 @@ export default function WeatherDashboard(props) {
           date={date}
           setDate={setDate}
           weekday={weekday}
+          weatherCode={weatherCode}
         />
-        <WeatherDataAndHistory>
-          <WeatherDetails weather={weather} Apikey={Apikey} weekday={weekday} />
+        <WeatherDataAndHistory weatherCode={weatherCode}>
+          <WeatherDetails
+            weather={weather}
+            weatherCode={weatherCode}
+            Apikey={Apikey}
+            weekday={weekday}
+          />
         </WeatherDataAndHistory>
       </WeatherContainer>
       {weatherDescription?.includes("Snow") && <Snowfall />}

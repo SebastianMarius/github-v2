@@ -51,6 +51,8 @@ export const WeatherDataAndHistory = styled.div`
   align-items: center;
   flex-direction: column;
   background-color: rgba(219, 229, 235, 0.6);
+
+  ${({ weatherCode }) => weatherCode === "404" && ` justify-content:center;`}
 `;
 
 export const WeatherHistory = styled.div`

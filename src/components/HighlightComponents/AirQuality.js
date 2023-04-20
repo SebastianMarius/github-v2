@@ -10,6 +10,8 @@ export default function AirQuality(props) {
   const lat = weather?.coord?.lat;
   const long = weather?.coord?.lon;
 
+  console.log(weather, " plmmm", lat, long);
+
   useEffect(() => {
     const fetchAirQuality = async () => {
       const getAirQuality = await fetch(

@@ -13,7 +13,6 @@ export default function Weather() {
   const [city, setCity] = useState("Cluj-Napoca");
   const [cityExist, setCityExist] = useState(true);
 
-  let apiResponseCode;
   const Apikey = "709e827bd8b3d48947e29431897b244d";
 
   useEffect(() => {

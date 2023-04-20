@@ -19,8 +19,16 @@ import { searchPhotos } from "../pexels";
 
 export default function TemperatureData(props) {
   const [photos, setPhotos] = useState([]);
-  const { setCity, weatherDescription, weather, date, city, setDate, weekday } =
-    props;
+  const {
+    setCity,
+    weatherCode,
+    weatherDescription,
+    weather,
+    date,
+    city,
+    setDate,
+    weekday,
+  } = props;
 
   const changeHandle = (e) => {
     if (e.key === "Enter") {
@@ -69,62 +77,68 @@ export default function TemperatureData(props) {
         <input onKeyDown={(e) => changeHandle(e)}></input>
       </TemperatureContainer>
 
-      <div className="weather_icon_and_thermo">
-        <img
-          src={getWeatherCloud(weatherDescription[0])}
-          className="weather_image"
-        />
+      {weatherCode === 200 && (
+        <>
+          <div className="weather_icon_and_thermo">
+            <img
+              src={getWeatherCloud(weatherDescription[0])}
+              className="weather_image"
+            />
 
-        <Thermometer
-          class="thermometer"
-          theme="light"
-          value={weather?.main?.temp}
-          format="°C"
-          size="small"
-          height="100"
-        />
-      </div>
+            <Thermometer
+              class="thermometer"
+              theme="light"
+              value={weather?.main?.temp}
+              format="°C"
+              size="small"
+              height="100"
+            />
+          </div>
 
-      <TemperatureContainer className="temperature">
-        {weather?.main?.temp}°C
-      </TemperatureContainer>
+          <TemperatureContainer className="temperature">
+            {weather?.main?.temp}°C
+          </TemperatureContainer>
 
-      <div className="date_and_time">
-        <div
-          className={
-            "date " + weather?.cod === 200 && getColorByWeather(weather)
-          }
-        >
-          {date.day},
-        </div>
-        <div className="hour">{date.hour + ":" + date.min}</div>
-      </div>
+          <div className="date_and_time">
+            <div
+              className={
+                "date " + weather?.cod === 200 && getColorByWeather(weather)
+              }
+            >
+              {date.day},
+            </div>
+            <div className="hour">{date.hour + ":" + date.min}</div>
+          </div>
 
-      <TemperatureContainer
-        className={weather?.cod === 200 && getColorByWeather(weather)}
-      >
-        {" "}
-        Feels like: {weather?.main?.feels_like}°C
-      </TemperatureContainer>
-      <TemperatureContainer
-        className={weather?.cod === 200 && getColorByWeather(weather)}
-      >
-        Temp min: {weather?.main?.temp_min}°C
-      </TemperatureContainer>
+          <TemperatureContainer
+            className={weather?.cod === 200 && getColorByWeather(weather)}
+          >
+            {" "}
+            Feels like: {weather?.main?.feels_like}°C
+          </TemperatureContainer>
+          <TemperatureContainer
+            className={weather?.cod === 200 && getColorByWeather(weather)}
+          >
+            Temp min: {weather?.main?.temp_min}°C
+          </TemperatureContainer>
 
-      <TemperatureContainer
-        className={weather?.cod === 200 && getColorByWeather(weather)}
-      >
-        {" "}
-        Temp max: {weather?.main?.temp_max}°C
-      </TemperatureContainer>
-      <hr className="horizontal_hr_line"></hr>
-      <TemperatureContainer
-        className={weather?.cod === 200 && getColorByWeather(weather)}
-      >
-        <h4 className="city_name">{city}</h4>
-        <img src={photos[0]?.src.landscape} className="city_photo"></img>
-      </TemperatureContainer>
+          <TemperatureContainer
+            className={weather?.cod === 200 && getColorByWeather(weather)}
+          >
+            {" "}
+            Temp max: {weather?.main?.temp_max}°C
+          </TemperatureContainer>
+          <hr className="horizontal_hr_line"></hr>
+          <TemperatureContainer
+            className={weather?.cod === 200 && getColorByWeather(weather)}
+          >
+            <h4 className="city_name">{city}</h4>
+            <img src={photos[0]?.src.landscape} className="city_photo"></img>
+          </TemperatureContainer>
+        </>
+      )}
+
+      {console.log(weather)}
     </WeatherData>
   );
 }
