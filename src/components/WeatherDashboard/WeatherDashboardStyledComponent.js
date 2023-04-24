@@ -23,7 +23,6 @@ export const WeatherContainer = styled.div`
 `;
 
 export const WeatherData = styled.div`
-  //   background-color: red;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -33,6 +32,15 @@ export const WeatherData = styled.div`
   color: white;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
+  ${(weather) => {
+    if (weather?.weather?.cod === "404") {
+      return;
+    } else if (
+      weather?.weather?.weather[0]?.main === "Clear" ||
+      weather?.weather?.weather[0]?.main === "Clouds"
+    )
+      return { color: "#292929;" };
+  }}
 `;
 
 export const TemperatureContainer = styled.div`

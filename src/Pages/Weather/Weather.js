@@ -31,8 +31,6 @@ export default function Weather() {
         currentWeatherArray.push(element.main);
       });
 
-      console.log(currentWeather);
-
       setCurrentWeather(currentWeatherArray);
 
       if (currentWeather.cod === 200) {
@@ -50,7 +48,6 @@ export default function Weather() {
   return (
     <div>
       <Navbar />
-      {weather?.cod && console.log(weather.cod, "weatherr ")}
 
       <CurrentWeatherContainer weatherDescription={currentWeather}>
         {weather && (
@@ -63,7 +60,6 @@ export default function Weather() {
             Apikey={Apikey}
           />
         )}
-        {console.log(weather)}
       </CurrentWeatherContainer>
     </div>
   );

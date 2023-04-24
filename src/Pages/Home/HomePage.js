@@ -47,7 +47,6 @@ export default function HomePage(props) {
   };
 
   const changeHandler = () => {
-    console.log("prima linie");
     const fetchingUsers = async () => {
       const fetchUsersResp = await fetch(
         `https://api.github.com/search/users?q=` +

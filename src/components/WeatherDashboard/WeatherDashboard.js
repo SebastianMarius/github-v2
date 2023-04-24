@@ -23,20 +23,10 @@ const weekday = [
   "Saturday",
 ];
 
-const date = new Date();
-const currentDate = {
-  day: weekday[date.getDay()],
-  hour: date.getDay <= 9 ? "0" + date.getDay() : date.getDay(),
-  min: date.getMinutes <= 9 ? "0" + date.getMinutes() : date.getMinutes(),
-};
-
 export default function WeatherDashboard(props) {
   const { weatherDescription, Apikey, weather, setCity, city } = props;
 
-  const [date, setDate] = useState(currentDate);
   const weatherCode = weather?.cod;
-
-  console.log("d aaci?");
 
   return (
     <>
@@ -46,8 +36,6 @@ export default function WeatherDashboard(props) {
           city={city}
           weatherDescription={weatherDescription}
           weather={weather}
-          date={date}
-          setDate={setDate}
           weekday={weekday}
           weatherCode={weatherCode}
         />

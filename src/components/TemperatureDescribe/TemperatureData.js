@@ -17,18 +17,29 @@ import {
 } from "../WeatherUsedFunctions/WeatherUsedFunctions";
 import { searchPhotos } from "../pexels";
 
+const date = new Date();
+const currentDate = (weekday) => {
+  return {
+    day: weekday[date.getDay()],
+    hour: date.getDay <= 9 ? "0" + date.getDay() : date.getDay(),
+    min: date.getMinutes <= 9 ? "0" + date.getMinutes() : date.getMinutes(),
+  };
+};
+let currentMins;
+
 export default function TemperatureData(props) {
-  const [photos, setPhotos] = useState([]);
   const {
     setCity,
     weatherCode,
     weatherDescription,
     weather,
-    date,
+
     city,
-    setDate,
+
     weekday,
   } = props;
+  const [photos, setPhotos] = useState([]);
+  const [date, setDate] = useState(currentDate(weekday));
 
   const changeHandle = (e) => {
     if (e.key === "Enter") {
@@ -42,23 +53,30 @@ export default function TemperatureData(props) {
       setPhotos(data);
     };
 
+    if (weather?.cod === 404) return;
+
     const timer = setInterval(() => {
       const timezone = getTimeDiffAndTimeZone(city).timezone;
 
       const country = findTimeZone(timezone);
 
       const nativeDate = new Date();
+
       const countryTime = getZonedTime(nativeDate, country);
+
+      const min =
+        countryTime.minutes <= 9
+          ? "0" + countryTime.minutes
+          : countryTime.minutes;
+
+      if (min === currentMins) return;
 
       const dayOfWeek = weekday[countryTime.dayOfWeek];
 
       const hour =
         countryTime.hours <= 9 ? "0" + countryTime.hours : countryTime.hours;
 
-      const min =
-        countryTime.minutes <= 9
-          ? "0" + countryTime.minutes
-          : countryTime.minutes;
+      currentMins = min;
 
       setDate({ min: min, hour: hour, day: dayOfWeek });
     }, 1000);
@@ -71,9 +89,10 @@ export default function TemperatureData(props) {
   }, [city]);
 
   return (
-    <WeatherData>
+    <WeatherData weather={weather}>
+      {console.log(weather)}
       <TemperatureContainer className="search_container">
-        <Search />
+        <Search style={{ color: "#b9b7b7" }} />
         <input onKeyDown={(e) => changeHandle(e)}></input>
       </TemperatureContainer>
 
@@ -100,38 +119,24 @@ export default function TemperatureData(props) {
           </TemperatureContainer>
 
           <div className="date_and_time">
-            <div
-              className={
-                "date " + weather?.cod === 200 && getColorByWeather(weather)
-              }
-            >
-              {date.day},
-            </div>
+            <div className={"date "}>{date.day},</div>
             <div className="hour">{date.hour + ":" + date.min}</div>
           </div>
 
-          <TemperatureContainer
-            className={weather?.cod === 200 && getColorByWeather(weather)}
-          >
+          <TemperatureContainer>
             {" "}
             Feels like: {weather?.main?.feels_like}°C
           </TemperatureContainer>
-          <TemperatureContainer
-            className={weather?.cod === 200 && getColorByWeather(weather)}
-          >
+          <TemperatureContainer>
             Temp min: {weather?.main?.temp_min}°C
           </TemperatureContainer>
 
-          <TemperatureContainer
-            className={weather?.cod === 200 && getColorByWeather(weather)}
-          >
+          <TemperatureContainer>
             {" "}
             Temp max: {weather?.main?.temp_max}°C
           </TemperatureContainer>
           <hr className="horizontal_hr_line"></hr>
-          <TemperatureContainer
-            className={weather?.cod === 200 && getColorByWeather(weather)}
-          >
+          <TemperatureContainer>
             <h4 className="city_name">{city}</h4>
             <img src={photos[0]?.src.landscape} className="city_photo"></img>
           </TemperatureContainer>

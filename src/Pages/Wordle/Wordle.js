@@ -65,7 +65,6 @@ export default function Wordle() {
       return;
     }
 
-    console.log(pressedKey);
     const newArray = [...stateOfWordsRef.current];
     const needsNewRow = stateOfWordsRef.current[currentIndex].length > 4;
 
@@ -81,7 +80,6 @@ export default function Wordle() {
       if (!isWord) {
         newArray[currentIndex] = "";
       } else {
-        console.log("current index intra n else");
         setCurrentIndex(currentIndex + 1);
       }
 
@@ -91,7 +89,6 @@ export default function Wordle() {
     }
 
     if (pressedKey.length === 1) {
-      console.log(currentIndex);
       newArray[currentIndex] += pressedKey.toUpperCase();
     }
 
