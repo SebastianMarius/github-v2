@@ -3,6 +3,7 @@ import Thermometer from "react-thermometer-component";
 import { Search } from "@mui/icons-material";
 import getTimeDiffAndTimeZone from "city-country-timezone";
 import { findTimeZone, getZonedTime } from "timezone-support";
+import '../../styling/Internalization.css';
 
 //Components
 import {
@@ -91,6 +92,11 @@ export default function TemperatureData(props) {
   return (
     <WeatherData weather={weather}>
       {console.log(weather)}
+      <div className="internalization-container">
+        <button className="eng-lang-btn">ENG</button>
+        <button className="ro-lang-btn">RO</button>
+      </div>
+
       <TemperatureContainer className="search_container">
         <Search style={{ color: "#b9b7b7" }} />
         <input onKeyDown={(e) => changeHandle(e)}></input>

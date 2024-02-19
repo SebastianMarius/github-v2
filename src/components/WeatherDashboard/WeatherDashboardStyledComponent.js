@@ -97,7 +97,7 @@ export const DataCard = styled.div`
   border: 1px solid gray;
   margin-left: 1%;
   margin-right: 1%;
-  border-radius: 10px;
+  // border-radius: 10px;
 `;
 
 export const CompassArrow = styled.div`
