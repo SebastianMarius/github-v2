@@ -6,8 +6,10 @@ import { useState } from "react";
 import HomePage from "./Pages/Home/HomePage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import UserInfo from "./Pages/UserInfo";
+import RepoDetails from "./Pages/RepoDetails/RepoDetails";
 import SignUp from "./Pages/SignUp/SignUp";
 import { Auth0Provider } from "@auth0/auth0-react";
+import Wordle from "./Pages/Wordle/Wordle";
 import Weather from "./Pages/Weather/Weather";
 
 function App() {
@@ -29,7 +31,14 @@ function App() {
       path: "/profile/:username",
       element: <UserInfo />,
     },
-
+    {
+      path: "/profile/:username/:repoName",
+      element: <RepoDetails />,
+    },
+    {
+      path: "/wordle",
+      element: <Wordle />,
+    },
     {
       path: "/weather",
       element: <Weather />,

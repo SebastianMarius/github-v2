@@ -47,6 +47,8 @@ export default function Weather() {
 
   return (
     <div>
+      <Navbar />
+
       <CurrentWeatherContainer weatherDescription={currentWeather}>
         {weather && (
           <WeatherDashboard
