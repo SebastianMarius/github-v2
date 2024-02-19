@@ -34,9 +34,10 @@ export default function TemperatureData(props) {
     weatherCode,
     weatherDescription,
     weather,
-
+    internattionalizare,
+    activelang,
+    setActiveLang,
     city,
-
     weekday,
   } = props;
   const [photos, setPhotos] = useState([]);
@@ -93,8 +94,8 @@ export default function TemperatureData(props) {
     <WeatherData weather={weather}>
       {console.log(weather)}
       <div className="internalization-container">
-        <button className="eng-lang-btn">ENG</button>
-        <button className="ro-lang-btn">RO</button>
+        <button className="eng-lang-btn" onClick={()=> setActiveLang('en')}>ENG</button>
+        <button className="ro-lang-btn" onClick={()=> setActiveLang('ro')}>RO</button>
       </div>
 
       <TemperatureContainer className="search_container">
@@ -131,15 +132,15 @@ export default function TemperatureData(props) {
 
           <TemperatureContainer>
             {" "}
-            Feels like: {weather?.main?.feels_like}°C
+            {internattionalizare[activelang].leftSide.temperatureFeels}: {weather?.main?.feels_like}°C
           </TemperatureContainer>
           <TemperatureContainer>
-            Temp min: {weather?.main?.temp_min}°C
+          {internattionalizare[activelang].leftSide.temperatureMin}: {weather?.main?.temp_min}°C
           </TemperatureContainer>
 
           <TemperatureContainer>
             {" "}
-            Temp max: {weather?.main?.temp_max}°C
+            {internattionalizare[activelang].leftSide.temperatureMax}: {weather?.main?.temp_max}°C
           </TemperatureContainer>
           <hr className="horizontal_hr_line"></hr>
           <TemperatureContainer>

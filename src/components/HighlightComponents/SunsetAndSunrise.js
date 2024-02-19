@@ -4,10 +4,10 @@ import Sunset from "../../assets/sunset.svg";
 import { getSunTime } from "../WeatherUsedFunctions/WeatherUsedFunctions";
 
 export default function SunsetAndSunrise(props) {
-  const { weather } = props;
+  const { weather, internattionalizare, activelang } = props;
   return (
     <DataCard>
-      <h3>Sunrise & Sunset</h3>
+      <h3>{internattionalizare[activelang].rightSide.sunsetSunrise}</h3>
       <div className="sunrise_container">
         <img src={Sunrise} className="sunrise_svg give_margin" />
         <p className="sun_time">{getSunTime(weather?.sys?.sunrise)}</p>

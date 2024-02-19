@@ -2,11 +2,11 @@ import { DataCard } from "../WeatherDashboard/WeatherDashboardStyledComponent";
 import { CompassArrow } from "../WeatherDashboard/WeatherDashboardStyledComponent";
 
 export default function WindStatus(props) {
-  const { weather } = props;
+  const { weather, internattionalizare, activelang } = props;
 
   return (
     <DataCard>
-      <h3>Wind status</h3>
+      <h3>{internattionalizare[activelang].rightSide.windStatus}</h3>
       <div id="compass">
         <CompassArrow degrees={weather?.wind?.deg}>
           <div className="arrow_head"></div>

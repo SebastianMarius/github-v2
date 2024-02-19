@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "../../components/Navbar";
 import { CurrentWeatherContainer } from "./WeatherStyledComponent";
 import { useEffect } from "react";
 import { useState } from "react";

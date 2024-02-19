@@ -8,7 +8,7 @@ import "../../styling/WeatherDataAndHistory.css";
 import "../../styling/SkeletonLoading.css";
 
 export default function WeatherDetails(props) {
-  const { weather, weekday, Apikey, weatherCode } = props;
+  const { weather, weekday, Apikey, weatherCode, internattionalizare, activelang } = props;
 
   return (
     <>
@@ -19,12 +19,12 @@ export default function WeatherDetails(props) {
             Apikey={Apikey}
             weekday={weekday}
           />
-          <h2 className="highlights"> Today Highlights</h2>
+          <h2 className="highlights"> {internattionalizare[activelang].rightSide.totalHighlits}</h2>
 
-          <HighlightDashboard weather={weather} Apikey={Apikey} />
+          <HighlightDashboard weather={weather} Apikey={Apikey} activelang={activelang}  internattionalizare={internattionalizare} />
         </>
       ) : (
-        <BadRequest />
+        <BadRequest  activelang={activelang} internattionalizare={internattionalizare} />
       )}
     </>
   );

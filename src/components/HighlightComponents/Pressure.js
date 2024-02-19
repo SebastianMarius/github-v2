@@ -2,10 +2,10 @@ import { DataCard } from "../../components/WeatherDashboard/WeatherDashboardStyl
 import Barometer from "../Barometer";
 
 export default function Pressure(props) {
-  const { weather } = props;
+  const { weather, internattionalizare, activelang } = props;
   return (
     <DataCard>
-      <h3>Pressure</h3>
+      <h3>{internattionalizare[activelang].rightSide.pressure}</h3>
       <Barometer id="dial9" value={weather?.main?.pressure} title="Barometer" />
     </DataCard>
   );

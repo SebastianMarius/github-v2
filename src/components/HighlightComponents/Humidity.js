@@ -2,10 +2,10 @@ import { DataCard } from "../WeatherDashboard/WeatherDashboardStyledComponent";
 import GaugeChart from "react-gauge-chart";
 
 export default function Humidity(props) {
-  const { weather } = props;
+  const { weather, internattionalizare, activelang } = props;
   return (
     <DataCard>
-      <h3>Humidity</h3>
+      <h3>{internattionalizare[activelang].rightSide.humidity}</h3>
 
       <GaugeChart
         id="gauge-chart4"

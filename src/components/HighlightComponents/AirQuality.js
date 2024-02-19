@@ -4,7 +4,7 @@ import Lungs from "../../assets/lungs.svg";
 import { getAirQuality } from "../WeatherUsedFunctions/WeatherUsedFunctions";
 
 export default function AirQuality(props) {
-  const { weather, Apikey } = props;
+  const { weather, Apikey, internattionalizare, activelang } = props;
   const [airQuality, setAirQuality] = useState();
 
   const lat = weather?.coord?.lat;
@@ -31,7 +31,7 @@ export default function AirQuality(props) {
 
   return (
     <DataCard>
-      <h3>Air Quality</h3>
+      <h3>{internattionalizare[activelang].rightSide.airQuality}</h3>
       <img src={Lungs} className="lungs" />
       <div className="airQuality_description">{getAirQuality(airQuality)}</div>
     </DataCard>

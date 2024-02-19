@@ -1,12 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
-import Navbar from "./components/Navbar";
-import UserData from "./components/UserData/UserData";
 import { useState } from "react";
-import HomePage from "./Pages/Home/HomePage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import UserInfo from "./Pages/UserInfo";
-import SignUp from "./Pages/SignUp/SignUp";
 import { Auth0Provider } from "@auth0/auth0-react";
 import Weather from "./Pages/Weather/Weather";
 
@@ -14,20 +9,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <SignUp />,
-    },
-    {
-      path: "/homePage",
-      element: <HomePage />,
-    },
-    {
-      path: "/searchforuser",
-      element: <HomePage />,
-    },
-
-    {
-      path: "/profile/:username",
-      element: <UserInfo />,
+      element: <Weather />,
     },
 
     {
